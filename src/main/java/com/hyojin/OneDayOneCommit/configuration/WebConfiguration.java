@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.ResourceHandlerRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.resource.ResourceResolver;
@@ -16,6 +17,11 @@ import reactor.core.publisher.Mono;
 
 @Configuration
 public class WebConfiguration implements WebFluxConfigurer {
+
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**");
+  }
 
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -30,7 +36,7 @@ public class WebConfiguration implements WebFluxConfigurer {
     registry.addResourceHandler("/api/**")
         .addResourceLocations("classpath:/META-INF/resources/webjars/");
 
-    registry.addResourceHandler("/**")
+    registry.addResourceHandler("**")
         .addResourceLocations("/public/")
         .resourceChain(true)
         .addResolver(resolver);
