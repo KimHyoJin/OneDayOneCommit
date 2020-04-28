@@ -1,5 +1,6 @@
 package com.hyojin.OneDayOneCommit.configuration;
 
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +11,6 @@ import org.springframework.web.reactive.config.ResourceHandlerRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.resource.ResourceResolver;
 import org.springframework.web.reactive.resource.ResourceResolverChain;
-import org.springframework.web.reactive.resource.VersionResourceResolver;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -27,6 +27,9 @@ public class WebConfiguration implements WebFluxConfigurer {
     registry.addResourceHandler("/webjars/**")
         .addResourceLocations("classpath:/META-INF/resources/webjars/");
 
+    registry.addResourceHandler("/api/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/");
+
     registry.addResourceHandler("/**")
         .addResourceLocations("/public/")
         .resourceChain(true)
@@ -41,6 +44,7 @@ public class WebConfiguration implements WebFluxConfigurer {
     private Resource index = new ClassPathResource(REACT_DIR + "index.html");
     private List<String> rootStaticFiles = Arrays.asList("favicon.io",
         "asset-manifest.json", "manifest.json", "service-worker.js");
+    private List<String> ignoredPaths = Arrays.asList("api");
 
 
     @Override

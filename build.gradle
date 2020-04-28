@@ -18,7 +18,6 @@ configurations {
 
 def swagger_version = '3.0.0-SNAPSHOT'
 
-
 repositories {
     mavenCentral()
     maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
@@ -33,9 +32,11 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
+    // swagger
     implementation "io.springfox:springfox-swagger2:${swagger_version}"
     implementation "io.springfox:springfox-swagger-ui:${swagger_version}"
     implementation "io.springfox:springfox-spring-webflux:${swagger_version}"
+
 }
 
 test {
