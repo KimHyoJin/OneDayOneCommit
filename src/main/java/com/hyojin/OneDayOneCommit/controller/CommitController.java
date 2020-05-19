@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,11 @@ public class CommitController {
   @GetMapping("/get")
   public Mono<String> getCommits(@RequestParam String userName,
       @RequestParam String repositoryUrl) {
+    List<String> list = List.of("aaa", "bbb");
+    Map.of();
+    Set.of();
     return gitClientService.getCommit(userName, repositoryUrl);
+
   }
 
   @GetMapping("/days/get")
